@@ -1,0 +1,12 @@
+#Sample standard image pre-processing code using ImageMagick:
+
+magick convert -density 300 -type Grayscale -compress lzw -background white -depth 8 Desktop/Thesis/Data/lamsas_informant_bios/testinput/NC479.pdf Desktop/Thesis/Data/lamsas_informant_bios/testoutput/NC479.tif
+
+#Sample nhanced image pre-processing code using ImageMagick
+
+magick convert -density 300 -type Grayscale -compress lzw -background white -depth 8 -normalize -blur 0x1 -morphology Open Diamond Desktop/Thesis/Data/lamsas_informant_bios/01_Scans/full/NC301-496.pdf Desktop/Thesis/Data/lamsas_informant_bios/02_Images/LinCoLab/NC_%03d.tif
+
+
+#Sample optical character recognition (OCR) batch processing code using Tesseract
+
+for i in Desktop/Thesis/Data/lamsas_informant_bios/02_Images/WV/WV_*.tif; do echo $i; tesseract -l eng --psm 6  $i $(basename $i .tif) txt; done
